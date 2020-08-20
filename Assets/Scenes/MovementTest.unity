@@ -179,6 +179,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2968782337040743783, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
+      propertyPath: turnIntensity.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968782337040743783, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
+      propertyPath: turnIntensity.y
+      value: 35.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968782337040743783, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
+      propertyPath: angularInterpolation
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2996109372497437085, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
       propertyPath: m_Name
       value: Player
@@ -453,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404615265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00067169, y: 24, z: 1109}
+  m_LocalPosition: {x: 0.00067169, y: 26, z: 1109}
   m_LocalScale: {x: 24.344713, y: 13.645199, z: 2288.9546}
   m_Children: []
   m_Father: {fileID: 0}

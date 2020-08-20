@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jetSpeed: 50
   aimSpeed: 26
-  invertY: 1
-  turnIntensity: 30
+  invertY: 0
+  turnIntensity: {x: 35, y: 20}
   rollIntensity: 25
+  angularInterpolation: 0.011

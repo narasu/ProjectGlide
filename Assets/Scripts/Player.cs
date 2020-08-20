@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
     Quaternion rotation;
     Quaternion prevRotation;
 
-    [SerializeField] private float turnIntensity = 35.0f;
+    [SerializeField] private Vector2 turnIntensity = new Vector2(35, 20);
     [SerializeField] private float rollIntensity = 3.0f;
-
+    [Range(0.0f, 0.1f)] [SerializeField] private float angularInterpolation = 0.01f;
     private void Awake()
     {
         controls = new InputMaster();
@@ -34,10 +34,7 @@ public class Player : MonoBehaviour
             controls.Airship.Aim.performed += ctx => aimDirection = new Vector3(ctx.ReadValue<Vector2>().x, -ctx.ReadValue<Vector2>().y);
         }
 
-        
         controls.Airship.Aim.canceled += ctx => aimDirection = Vector2.zero;
-
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -51,8 +48,8 @@ public class Player : MonoBehaviour
         //float zRotation = Vector2.SignedAngle(Vector2.zero, aimDirection) * rollIntensity;
 
 
-        rotation = Quaternion.Euler(new Vector3(-aimDirection.y * turnIntensity, aimDirection.x * turnIntensity, zRotation));
-        transform.localRotation = Quaternion.Lerp(prevRotation, rotation, 0.1f);
+        rotation = Quaternion.Euler(new Vector3(-aimDirection.y * turnIntensity.y, aimDirection.x * turnIntensity.x, zRotation));
+        transform.localRotation = Quaternion.Lerp(prevRotation, rotation, angularInterpolation);
 
         Vector3 movement = Vector3.forward * jetSpeed * Time.deltaTime;
         transform.Translate(movement);
