@@ -97,6 +97,6 @@ MonoBehaviour:
   jetSpeed: 50
   aimSpeed: 26
   invertY: 0
-  turnIntensity: {x: 35, y: 20}
+  turnIntensity: {x: 45, y: 35.4}
   rollIntensity: 25
-  angularInterpolation: 0.011
+  angularInterpolation: 0.01
