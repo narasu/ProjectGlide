@@ -2,7 +2,7 @@
 using PathCreation;
 using System.Collections;
 
-public class PlayerBounds : MonoBehaviour
+public class Follower : MonoBehaviour
 {
     public PathCreator pathCreator;
     public EndOfPathInstruction endOfPathInstruction;
