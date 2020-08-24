@@ -7,10 +7,13 @@ public class Follower : MonoBehaviour
     public PathCreator pathCreator;
     public EndOfPathInstruction endOfPathInstruction;
     private float speed;
-    float distanceTravelled;
+    public float startingPoint;
+    [HideInInspector] public float distanceTravelled;
 
     void Start()
     {
+        distanceTravelled = startingPoint;
+
         if (pathCreator != null)
         {
             // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -25,6 +28,14 @@ public class Follower : MonoBehaviour
         if (pathCreator != null)
         {
             distanceTravelled += speed * Time.deltaTime;
+            SetPositionAlongPath();
+        }
+    }
+
+    public void SetPositionAlongPath()
+    {
+        if (pathCreator != null)
+        {
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
         }

@@ -39,10 +39,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public Vector2 minPos = new Vector2(-38, -22);
+    public Vector2 maxPos = new Vector2(38, 24);
+
+    /*
     public float xMin = -32.0f;
     public float xMax = 32.0f;
     public float yMin = -18.0f;
     public float yMax = 18.0f;
+    */
 
     Quaternion rotation;
     Quaternion prevRotation;
@@ -89,8 +94,8 @@ public class Player : MonoBehaviour
         Vector3 movement = aimDirection * movementSpeed * Time.deltaTime;
         Vector3 nextPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + movement, movementInterpolation * Time.deltaTime);
 
-        nextPosition.x = Mathf.Clamp(nextPosition.x, xMin, xMax);
-        nextPosition.y = Mathf.Clamp(nextPosition.y, yMin, yMax);
+        nextPosition.x = Mathf.Clamp(nextPosition.x, minPos.x, maxPos.x);
+        nextPosition.y = Mathf.Clamp(nextPosition.y, minPos.y, maxPos.y);
 
         transform.localPosition = nextPosition;
     }
@@ -106,23 +111,28 @@ public class Player : MonoBehaviour
 
     public float GetSpeed() => jetSpeed;
 
+    private void OnEnable() => controls.Enable();
+    private void OnDisable() => controls.Disable();
 
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
     private void InitializeInput()
     {
         //input setup 
         controls = new InputMaster();
         controls.Airship.Shoot.performed += ctx => Shoot();
         controls.Airship.Aim.performed += ctx => aimDirection = new Vector3(ctx.ReadValue<Vector2>().x, ctx.ReadValue<Vector2>().y*InvertYValue);
-
         controls.Airship.Aim.canceled += ctx => aimDirection = Vector2.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 bottomLeft = transform.parent.TransformPoint(minPos);
+        Vector3 topLeft = transform.parent.TransformPoint(new Vector3(minPos.x, maxPos.y));
+        Vector3 topRight = transform.parent.TransformPoint(maxPos);
+        Vector3 bottomRight = transform.parent.TransformPoint(new Vector3(maxPos.x, minPos.y));
+
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomLeft, bottomRight);
     }
 }

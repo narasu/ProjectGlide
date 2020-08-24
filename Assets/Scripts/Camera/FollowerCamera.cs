@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoBehaviour
+public class FollowerCamera : MonoBehaviour
 {
     public Transform pathFollower;
     public float zOffset = -30.0f;
