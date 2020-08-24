@@ -48,16 +48,16 @@ MonoBehaviour:
   firePoint: {fileID: 4794746592985015928}
   bullet: {fileID: 84285096346403285, guid: 369936eacd820ce48ac95482f4fc9699, type: 3}
   jetSpeed: 50
-  invertY: 1
-  xMin: -30
-  xMax: 30
+  invertY: 0
+  xMin: -38
+  xMax: 38
   yMin: -22
-  yMax: 20
+  yMax: 24
   turnIntensity: {x: 42.6, y: 19.9}
-  turnSpeed: {x: 20, y: 20}
+  movementSpeed: {x: 35, y: 20}
   rollIntensity: 13.6
-  movementInterpolation: 37.8
-  angularInterpolation: 5.8
+  movementInterpolation: 475
+  angularInterpolation: 7.94
 --- !u!1 &3702616323012679151
 GameObject:
   m_ObjectHideFlags: 0

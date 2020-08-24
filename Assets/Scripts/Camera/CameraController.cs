@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         pos.y = Mathf.Clamp(Player.Instance.transform.localPosition.y, -10.0f, 10.0f);
         pos.z = zOffset;
 
-        Debug.Log(movementInterpolation * Time.deltaTime);
+        //Debug.Log(movementInterpolation * Time.deltaTime);
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, pos, movementInterpolation*Time.deltaTime);
         //transform.localPosition = pos;

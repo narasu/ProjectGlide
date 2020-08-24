@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using PathCreation;
 using UnityEngine.InputSystem;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -27,7 +28,17 @@ public class Player : MonoBehaviour
 
     private Vector3 aimDirection;
     public bool invertY;
-    
+    private int InvertYValue
+    {
+        get
+        {
+            if (invertY)
+                return -1;
+            else
+                return 1;
+        }
+    }
+
     public float xMin = -32.0f;
     public float xMax = 32.0f;
     public float yMin = -18.0f;
@@ -39,7 +50,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 turnIntensity = new Vector2(35, 20);
     [SerializeField] private Vector2 movementSpeed = new Vector2(35, 20);
     [SerializeField] private float rollIntensity = 3.0f;
-    [Range(0.0f, 50.0f)] [SerializeField] private float movementInterpolation = 5f;
+    [Range(0.0f, 1000.0f)] [SerializeField] private float movementInterpolation = 5f;
     [Range(0.0f, 10.0f)] [SerializeField] private float angularInterpolation = 5f;
 
     private void Awake()
@@ -76,7 +87,7 @@ public class Player : MonoBehaviour
     public void Move()
     {
         Vector3 movement = aimDirection * movementSpeed * Time.deltaTime;
-        Vector3 nextPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + movement, movementInterpolation);
+        Vector3 nextPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + movement, movementInterpolation * Time.deltaTime);
 
         nextPosition.x = Mathf.Clamp(nextPosition.x, xMin, xMax);
         nextPosition.y = Mathf.Clamp(nextPosition.y, yMin, yMax);
@@ -90,12 +101,10 @@ public class Player : MonoBehaviour
         b.transform.position = firePoint.position;
         b.transform.rotation = firePoint.rotation;
         b.GetComponent<Rigidbody>().velocity = firePoint.forward * (jetSpeed + 150.0f);
+        //Debug.Log($"bullet is traveling at {b.GetComponent<Rigidbody>().velocity} speed");
     }
 
-    public float GetSpeed()
-    {
-        return jetSpeed;
-    }
+    public float GetSpeed() => jetSpeed;
 
 
     private void OnEnable()
@@ -112,14 +121,8 @@ public class Player : MonoBehaviour
         //input setup 
         controls = new InputMaster();
         controls.Airship.Shoot.performed += ctx => Shoot();
-        if (!invertY)
-        {
-            controls.Airship.Aim.performed += ctx => aimDirection = ctx.ReadValue<Vector2>();
-        }
-        else
-        {
-            controls.Airship.Aim.performed += ctx => aimDirection = new Vector3(ctx.ReadValue<Vector2>().x, -ctx.ReadValue<Vector2>().y);
-        }
+        controls.Airship.Aim.performed += ctx => aimDirection = new Vector3(ctx.ReadValue<Vector2>().x, ctx.ReadValue<Vector2>().y*InvertYValue);
+
         controls.Airship.Aim.canceled += ctx => aimDirection = Vector2.zero;
     }
 }
