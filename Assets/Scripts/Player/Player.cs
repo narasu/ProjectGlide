@@ -125,14 +125,17 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 bottomLeft = transform.parent.TransformPoint(minPos);
-        Vector3 topLeft = transform.parent.TransformPoint(new Vector3(minPos.x, maxPos.y));
-        Vector3 topRight = transform.parent.TransformPoint(maxPos);
-        Vector3 bottomRight = transform.parent.TransformPoint(new Vector3(maxPos.x, minPos.y));
+        if (transform.parent!=null)
+        {
+            Vector3 bottomLeft = transform.parent.TransformPoint(minPos);
+            Vector3 topLeft = transform.parent.TransformPoint(new Vector3(minPos.x, maxPos.y));
+            Vector3 topRight = transform.parent.TransformPoint(maxPos);
+            Vector3 bottomRight = transform.parent.TransformPoint(new Vector3(maxPos.x, minPos.y));
 
-        Gizmos.DrawLine(bottomLeft, topLeft);
-        Gizmos.DrawLine(topLeft, topRight);
-        Gizmos.DrawLine(topRight, bottomRight);
-        Gizmos.DrawLine(bottomLeft, bottomRight);
+            Gizmos.DrawLine(bottomLeft, topLeft);
+            Gizmos.DrawLine(topLeft, topRight);
+            Gizmos.DrawLine(topRight, bottomRight);
+            Gizmos.DrawLine(bottomLeft, bottomRight);
+        }
     }
 }
