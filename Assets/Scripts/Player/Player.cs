@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public GameObject bullet;
 
+    public List<GameObject> weapons;
+    private int selectedWeapon;
+
+
     private InputMaster controls;
     [SerializeField] private float jetSpeed = 50.0f;
 
@@ -102,10 +106,7 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject b = Instantiate(bullet);
-        b.transform.position = firePoint.position;
-        b.transform.rotation = firePoint.rotation;
-        b.GetComponent<Rigidbody>().velocity = firePoint.forward * (jetSpeed + 150.0f);
+        weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
         //Debug.Log($"bullet is traveling at {b.GetComponent<Rigidbody>().velocity} speed");
     }
 
