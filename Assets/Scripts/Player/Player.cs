@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
     private PlayerFSM fsm;
 
     public GameObject ship;
-    public Transform firePoint;
-    public GameObject bullet;
 
     public List<GameObject> weapons;
     private int selectedWeapon;
@@ -106,7 +104,14 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
+        //weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
+        foreach (Weapon w in GetComponentsInChildren<Weapon>())
+        {
+            if (w.isActiveAndEnabled)
+            {
+                w.Shoot();
+            }
+        }
         //Debug.Log($"bullet is traveling at {b.GetComponent<Rigidbody>().velocity} speed");
     }
 

@@ -274,22 +274,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2652082701233782860, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
-      propertyPath: invertY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652082701233782860, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
-      propertyPath: movementSpeed.y
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652082701233782860, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
-      propertyPath: turnIntensity.y
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652082701233782860, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
-      propertyPath: turnIntensity.x
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 2996109372497437085, guid: 8dab9a09934e339448d3b01a50546229, type: 3}
       propertyPath: m_Name
       value: Player

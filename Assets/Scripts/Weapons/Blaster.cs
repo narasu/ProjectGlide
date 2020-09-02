@@ -9,7 +9,7 @@ public class Blaster : Weapon
         GameObject b = Instantiate(bullet);
         b.transform.position = firePoint.position;
         b.transform.rotation = firePoint.rotation;
-        b.GetComponent<Rigidbody>().velocity = firePoint.forward * bulletSpeed;
+        b.GetComponent<Rigidbody>().velocity = firePoint.forward * (Player.Instance.GetSpeed() + bulletSpeed);
     }
 
     public override void Reload()
