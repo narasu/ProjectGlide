@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22216645, y: 0.056506347, z: 2.0912988}
-  m_Center: {x: -2.4478936, y: -0.31519166, z: -1.7311966}
+  m_Size: {x: 0.22127938, y: 0.16599427, z: 1.8034}
+  m_Center: {x: 0.010199976, y: 0.1253891, z: -1.0004994}
 --- !u!153 &507417172177870870
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ ConfigurableJoint:
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
   m_YMotion: 2
-  m_ZMotion: 2
+  m_ZMotion: 0
   m_AngularXMotion: 0
   m_AngularYMotion: 2
   m_AngularZMotion: 0
@@ -54,18 +54,18 @@ ConfigurableJoint:
     damper: 0
   m_LinearLimit:
     limit: 0
-    bounciness: 1
+    bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
     spring: 0
     damper: 0
   m_LowAngularXLimit:
     limit: 1
-    bounciness: 1
+    bounciness: 0
     contactDistance: 0
   m_HighAngularXLimit:
     limit: 1
-    bounciness: 1
+    bounciness: 0
     contactDistance: 0
   m_AngularYZLimitSpring:
     spring: 0
@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3702616323012679151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.158, z: 2.27}
+  m_LocalPosition: {x: 0, y: -0.158, z: 2.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940459022956729342}
@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 5721037935839042108}
   - component: {fileID: 939559576945002569}
   - component: {fileID: 98975054336069785}
-  - component: {fileID: 4755685052770354978}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -313,19 +312,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4755685052770354978
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8840346301369023612}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.87851924, y: 0.4902466, z: 1.373367}
-  m_Center: {x: -0.0006239891, y: -0.06278076, z: 1.4508666}
 --- !u!1001 &2268743268765456737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335,15 +321,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: aba61a7f5963afa4d89e8760b2ae9ff0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.45
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aba61a7f5963afa4d89e8760b2ae9ff0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: -0.508
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aba61a7f5963afa4d89e8760b2ae9ff0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.19
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aba61a7f5963afa4d89e8760b2ae9ff0, type: 3}
       propertyPath: m_LocalRotation.x
