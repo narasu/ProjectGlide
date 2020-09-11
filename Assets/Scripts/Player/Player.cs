@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
     private PlayerFSM fsm;
 
     public GameObject ship;
-    public Transform firePoint;
-    public GameObject bullet;
 
     public List<GameObject> weapons;
     private int selectedWeapon;
@@ -45,13 +43,6 @@ public class Player : MonoBehaviour
 
     public Vector2 minPos = new Vector2(-38, -22);
     public Vector2 maxPos = new Vector2(38, 24);
-
-    /*
-    public float xMin = -32.0f;
-    public float xMax = 32.0f;
-    public float yMin = -18.0f;
-    public float yMax = 18.0f;
-    */
 
     Quaternion rotation;
     Quaternion prevRotation;
@@ -106,7 +97,14 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
+        //weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
+        foreach (Weapon w in GetComponentsInChildren<Weapon>())
+        {
+            if (w.isActiveAndEnabled)
+            {
+                w.Shoot();
+            }
+        }
         //Debug.Log($"bullet is traveling at {b.GetComponent<Rigidbody>().velocity} speed");
     }
 
