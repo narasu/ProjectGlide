@@ -21,8 +21,11 @@ public class Player : MonoBehaviour
 
     public GameObject ship;
 
-    public List<GameObject> weapons;
-    private int selectedWeapon;
+    public List<GameObject> weaponObjects;
+    private List<Weapon> weapons;
+    private int selectedWeapon = 0;
+    public Ray crosshairRay;
+    [HideInInspector] public Vector3 crosshair1, crosshair2;
 
 
     private InputMaster controls;
@@ -63,6 +66,13 @@ public class Player : MonoBehaviour
         fsm.AddState(PlayerStateType.Normal, new NormalState());
 
         InitializeInput();
+
+        weapons = new List<Weapon>();
+        foreach(GameObject o in weaponObjects)
+        {
+            weapons.Add(o.GetComponent<Weapon>());
+        }
+        crosshairRay = new Ray(transform.position, transform.forward);
     }
 
     private void Start()
@@ -73,6 +83,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         fsm.UpdateState();
+        
+        crosshairRay = new Ray(weapons[0].firePoint.position, weapons[0].firePoint.forward);
     }
 
     public void HandleRotation()

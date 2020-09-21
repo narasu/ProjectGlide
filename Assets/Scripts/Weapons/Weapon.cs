@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] protected Transform firePoint;
+    public Transform firePoint;
     [SerializeField] protected GameObject bullet;
 
     [SerializeField] protected int magSize;

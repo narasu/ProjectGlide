@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Blaster : Weapon
 {
+    
     public override void Shoot()
     {
         GameObject b = Instantiate(bullet);
