@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable
+public interface ISpawnable
 {
-    void TakeDamage(int _damage);
+    void Spawn();
+    void Despawn();
 }

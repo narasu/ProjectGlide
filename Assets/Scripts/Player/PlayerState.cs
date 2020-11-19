@@ -9,10 +9,10 @@ public abstract class PlayerState
     protected PlayerFSM owner;
     protected Player player;
 
-    public void Initialize(PlayerFSM owner)
+    public void Initialize(PlayerFSM _owner)
     {
-        this.owner = owner;
-        player = owner.owner;
+        owner = _owner;
+        player = _owner.owner;
     }
 
     public abstract void Enter();

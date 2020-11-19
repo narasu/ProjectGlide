@@ -6,7 +6,7 @@ using PathCreation;
 using UnityEngine.InputSystem;
 using System;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     private static Player instance;
     public static Player Instance
@@ -18,20 +18,19 @@ public class Player : MonoBehaviour
     }
 
     private PlayerFSM fsm;
-
     public GameObject ship;
 
     public List<GameObject> weaponObjects;
     private List<Weapon> weapons;
     private int selectedWeapon = 0;
-    public Ray crosshairRay;
+    [HideInInspector] public Ray crosshairRay;
     [HideInInspector] public Vector3 crosshair1, crosshair2;
 
 
     private InputMaster controls;
     [SerializeField] private float jetSpeed = 50.0f;
 
-    private Vector3 aimDirection;
+    
     public bool invertY;
     private int InvertYValue
     {
@@ -44,11 +43,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public Vector2 minPos = new Vector2(-38, -22);
-    public Vector2 maxPos = new Vector2(38, 24);
+    
 
-    Quaternion rotation;
-    Quaternion prevRotation;
+    [SerializeField] private Vector2 minPos = new Vector2(-38, -22);
+    [SerializeField] private Vector2 maxPos = new Vector2(38, 24);
+
+    private Quaternion rotation;
+    private Quaternion prevRotation;
+    private Vector3 aimDirection;
 
     [SerializeField] private Vector2 turnIntensity = new Vector2(35, 20);
     [SerializeField] private Vector2 movementSpeed = new Vector2(35, 20);
@@ -109,7 +111,6 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        //weapons[selectedWeapon].GetComponent<Weapon>()?.Shoot();
         foreach (Weapon w in GetComponentsInChildren<Weapon>())
         {
             if (w.isActiveAndEnabled)
@@ -120,8 +121,19 @@ public class Player : MonoBehaviour
         //Debug.Log($"bullet is traveling at {b.GetComponent<Rigidbody>().velocity} speed");
     }
 
+    public void TakeDamage(int _damage)
+    {
+        
+    }
+
+    private void Die() 
+    { 
+        
+    }
+
     public float GetSpeed() => jetSpeed;
 
+    #region input
     private void OnEnable() => controls.Enable();
     private void OnDisable() => controls.Disable();
 
@@ -133,7 +145,7 @@ public class Player : MonoBehaviour
         controls.Airship.Aim.performed += ctx => aimDirection = new Vector3(ctx.ReadValue<Vector2>().x, ctx.ReadValue<Vector2>().y*InvertYValue);
         controls.Airship.Aim.canceled += ctx => aimDirection = Vector2.zero;
     }
-
+    #endregion
     private void OnDrawGizmos()
     {
         if (transform.parent!=null)

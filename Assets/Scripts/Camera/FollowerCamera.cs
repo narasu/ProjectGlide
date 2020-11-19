@@ -19,7 +19,6 @@ public class FollowerCamera : MonoBehaviour
     
     private void LateUpdate()
     {
-
         transform.localRotation = Quaternion.Lerp(Quaternion.identity, Player.Instance.ship.transform.localRotation, rotationInterpolation);
 
         Vector3 pos;
@@ -31,5 +30,10 @@ public class FollowerCamera : MonoBehaviour
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, pos, movementInterpolation*Time.deltaTime);
         //transform.localPosition = pos;
+    }
+
+    private void OnValidate()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, zOffset);
     }
 }

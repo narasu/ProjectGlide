@@ -10,9 +10,9 @@ public class PlayerFSM
     private PlayerState currentState;
     private PlayerState previousState;
 
-    public void Initialize(Player owner)
+    public void Initialize(Player _owner)
     {
-        this.owner = owner;
+        owner = _owner;
         states = new Dictionary<PlayerStateType, PlayerState>();
     }
 
@@ -27,9 +27,9 @@ public class PlayerFSM
         currentState?.Update();
     }
 
-    public void GotoState(PlayerStateType key)
+    public void GotoState(PlayerStateType _key)
     {
-        if (!states.ContainsKey(key))
+        if (!states.ContainsKey(_key))
         {
             return;
         }
@@ -37,18 +37,18 @@ public class PlayerFSM
         currentState?.Exit();
 
         previousState = currentState;
-        CurrentStateType = key;
+        CurrentStateType = _key;
         currentState = states[CurrentStateType];
 
         currentState.Enter();
     }
 
-    public PlayerState GetState(PlayerStateType type)
+    public PlayerState GetState(PlayerStateType _type)
     {
-        if (!states.ContainsKey(type))
+        if (!states.ContainsKey(_type))
         {
             return null;
         }
-        return states[type];
+        return states[_type];
     }
 }
